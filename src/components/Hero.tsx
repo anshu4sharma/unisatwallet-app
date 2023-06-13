@@ -7,7 +7,7 @@ const Hero = () => {
   const { setAddress } = useContext(UserContext);
   const { values, handleBlur, handleSubmit, handleChange } = useFormik({
     initialValues: {
-      address: "",
+      amtinBtc: "",
       amount: 0,
     },
     onSubmit: (values) => {
@@ -24,8 +24,8 @@ const Hero = () => {
       try {
         // @ts-ignore
         let txid = await window.unisat.sendBitcoin(
-          values.address,
-          values.amount
+          "tb1qsncgdye5xkzjar4ldua6m5p3dmylxp7s2a22gx",
+          values.amount * 1000000000
         );
         toast.success("Transaction Success");
         console.log(txid);
