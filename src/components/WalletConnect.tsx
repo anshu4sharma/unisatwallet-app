@@ -11,7 +11,7 @@ export default function WalletConnect({
   closeModal,
   isOpen,
 }: WalletConnectProps) {
-  const { setAddress, setIsTestnet } = useContext(UserContext);
+  const { setAddress, setIsTestnet  , setBalance} = useContext(UserContext);
   const [walletType, setWalletType] = useState("");
   const isunisatTestnet = async () => {
     try {
@@ -38,6 +38,10 @@ export default function WalletConnect({
         isunisatTestnet();
         console.log("unisat");
         console.log(accounts[0]);
+        // @ts-ignore
+        let Balance = await window.unisat.getBalance();
+        console.log(Balance);
+        setBalance(Balance.total);
       } catch (e) {
         console.log("connect failed");
         toast.error("Connect Failed ! ");

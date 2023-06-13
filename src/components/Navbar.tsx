@@ -12,20 +12,20 @@ const menu = [
   },
   {
     label: "Features",
-    href: "/portfolio",
+    href: "/",
   },
   {
     label: "How to Join",
-    href: "/portfolio",
+    href: "/",
   },
   {
     label: "Projects",
-    href: "/portfolio",
+    href: "/",
   },
 
   {
     label: "Tokenomics",
-    href: "/about",
+    href: "/",
   },
 ];
 export default function Navbar() {
