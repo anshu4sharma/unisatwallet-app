@@ -7,7 +7,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  background-image: url("/assets/background.PNG");
+  background-image: url("/assets/background.jpg");
 }
 .btn {
   display: flex;
