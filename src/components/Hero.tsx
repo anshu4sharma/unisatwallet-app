@@ -53,21 +53,21 @@ const Hero = () => {
           className="bg-[#181F29] outline-none border-none placeholder-shown:text-white text-white p-3 rounded-md w-full"
         />
         <p className="text-white text-base">
-          Token Allocation = 10000000,000 EON
+        Token Total Supply: 100,000,000
         </p>
         <p className="text-white   font-medium text-base">
-          Price - 1 BTC = 10 EON
+        Presale Allocation: 10,000,000 (10%)
         </p>
         <p className="text-white   font-medium text-base">
-          Minimum Buy = 10000000,000 EON
-        </p>
+        Presale Hardcap: 10 BTC
+          </p>
         <p className="text-white  font-medium text-base">
-          Maximum Buy = 10000000,000 EON
+        Token Price: 1 EONS = 0.000001 BTC
         </p>
         <p className="text-white text-base  font-medium">
-          Sale Duration = 4 WEEKS
+        Minumum Buy: 0.005 BTC
         </p>
-        <p className="text-white font-medium text-base">Total Raised : 0/TBA</p>
+        <p className="text-white font-medium text-base">Maximum Buy: 0.5 BTC</p>
         <div className="w-full bg-[#181F29] rounded-full h-4">
           <div
             className="bg-[#0B111D] h-4 rounded-full"
