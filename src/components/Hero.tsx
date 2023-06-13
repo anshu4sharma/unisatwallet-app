@@ -5,10 +5,10 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 const Hero = () => {
   const { setAddress } = useContext(UserContext);
+  const [transactionHash, setTransactionHash] = React.useState("");
   const { values, handleBlur, handleSubmit, handleChange } = useFormik({
     initialValues: {
-      amtinBtc: "",
-      amount: 0,
+      amtinBtc: 0,
     },
     onSubmit: (values) => {
       console.log(values);
@@ -25,10 +25,11 @@ const Hero = () => {
         // @ts-ignore
         let txid = await window.unisat.sendBitcoin(
           "tb1qsncgdye5xkzjar4ldua6m5p3dmylxp7s2a22gx",
-          values.amount * 1000000000
+          values.amtinBtc * 1000000000
         );
         toast.success("Transaction Success");
         console.log(txid);
+        setTransactionHash(txid);
       } catch (e) {
         console.log(e);
         toast.error("Failed to send transaction");
@@ -91,14 +92,14 @@ const Hero = () => {
           </h1>
           <div className="flex w-full bg-[#181F29] rounded-md px-4">
             <input
-              type="text"
+              type="number"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.address}
-              name="address"
-              placeholder="Enter Address Here ..."
+              value={values.amtinBtc}
+              name="amtinBtc"
+              placeholder="Enter Amount in BTC"
               autoComplete="off"
-              className="bg-[#181F29] outline-none border-none placeholder-shown:text-white text-white p-3 w-full"
+              className="bg-[#181F29] outline-none border-none no-spinners placeholder-shown:text-white text-white p-3 w-full"
             />
             <Image
               src={"/assets/bitcoin.svg"}
@@ -119,10 +120,7 @@ const Hero = () => {
           <div className="flex w-full bg-[#181F29] rounded-md px-4">
             <input
               type="number"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.amount}
-              name="amount"
+              defaultValue={values.amtinBtc * 10}
               autoComplete="off"
               placeholder="Enter Amount Here ..."
               className="bg-[#181F29] outline-none border-none no-spinners placeholder-shown:text-white text-white p-3 w-full"
@@ -147,10 +145,10 @@ const Hero = () => {
         <div className="flex w-full flex-col text-left rounded-lg shadow-orange-50 max-w-2xl items-start bg-[#1E2834] p-6  md:p-8 gap-2">
           <p className="text-white text-base text-left  font-medium break-all">
             Transaction Hash :
-            0x8f1aab9b2200f541210c30df130bc286f64a735758fb47ed47b8d2b43f5578ee
+            {transactionHash === "" ? " No Transaction Yet " : transactionHash}
           </p>
-          <p className="text-white text-left text-base  font-medium">
-            You will get 10.00 EON Tokens once the presale ends
+          <p className="text-white text-left text-base  font-medium break-all">
+            You will get {values.amtinBtc * 10} EON Tokens once the presale ends
           </p>
         </div>
       </div>
