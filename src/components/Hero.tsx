@@ -77,7 +77,7 @@ const Hero = () => {
           ></div>
         </div>
         <div className="flex justify-between w-full">
-          <p className="text-white text-base  font-medium">0 BTC</p>
+          <p className="text-white text-base  font-medium">10 BTC</p>
           <p className="text-white text-base  font-medium">100,00,00 BTC</p>
         </div>
       </div>
