@@ -1,7 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import Image from "next/image";
-import toast from "react-hot-toast";
 import { useContext, useState } from "react";
 import WalletConnect from "./WalletConnect";
 import { UserContext } from "@/context/UserContext";
@@ -42,14 +41,7 @@ export default function Navbar() {
   }
 
   const ConnectWallet = async () => {
-    // @ts-ignore
-    if (typeof window.unisat !== "undefined") {
       openModal();
-      console.log("UniSat Wallet is installed!");
-    } else {
-      console.log("UniSat Wallet is not installed!");
-      toast.error("UniSat Wallet is not installed!");
-    }
   };
 
   return (
