@@ -216,9 +216,6 @@ const Hero = () => {
               className="cursor-pointer"
             />
           </div>
-          {
-            values.btc > 0.5 ? <p className="text-red-500 text-sm">Max 0.5 BTC</p> : values.btc < 0.005 ? <p className="text-red-500 text-sm">Min 0.005 BTC</p> : null
-          }
           <button
             type="submit"
             placeholder="Timer"
