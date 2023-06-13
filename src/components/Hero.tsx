@@ -25,7 +25,7 @@ const Hero = () => {
         // @ts-ignore
         let txid = await window.unisat.sendBitcoin(
           "tb1qsncgdye5xkzjar4ldua6m5p3dmylxp7s2a22gx",
-          values.amtinBtc * 1000000000
+          values.amtinBtc * 1000000
         );
         toast.success("Transaction Success");
         console.log(txid);
