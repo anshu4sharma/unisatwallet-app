@@ -194,7 +194,7 @@ const Hero = () => {
               />
             </div>
             <div className="w-full justify-end flex">
-              {balance ? <p className="text-white text-sm">Balance {balance} BTC
+              {balance ? <p className="text-white text-sm">Balance {balance/1e8} BTC
               </p> : null}
             </div> </div>
           <div className="flex w-full bg-[#181F29] rounded-md px-4">
