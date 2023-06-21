@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 const Hero = () => {
-  const { setAddress, balance } = useContext(UserContext);
+  const { setAddress, balance  , address} = useContext(UserContext);
   const [transactionHash, setTransactionHash] = React.useState("");
   const { values, handleBlur, handleSubmit, handleChange } = useFormik({
     initialValues: {
@@ -17,7 +17,6 @@ const Hero = () => {
       amtinEon: Yup.number().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       sendTransaction();
     },
   });
@@ -55,27 +54,18 @@ const Hero = () => {
     });
   };
   const sendTransaction = async () => {
-    // @ts-ignore
-    let accounts = await window.unisat.requestAccounts();
-    console.log(accounts);
-    setAddress(accounts[0]);
-    if (accounts[0] !== undefined && accounts[0] !== null) {
-      try {
-        // @ts-ignore
-        let txid = await window.unisat.sendBitcoin(
-          "tb1p6m2xcyk6sjqfxpmcrn4c722txkxe87uct08rw54rx56pfr22scmqpaguq7",
-          values.btc * 1e6
-        );
-        toast.success("Transaction Success");
-        console.log(txid);
-        setTransactionHash(txid);
-      } catch (e) {
-        console.log(e);
-        toast.error("Failed to send transaction");
-      }
-    } else {
-      toast.error("Please Connect Wallet First");
-    }
+    try {
+      // @ts-ignore
+      const result = await window.okxwallet.bitcoin.send({
+        from: address,
+        to: 'bc1plklsxq4wtv44dv8nm49fj0gh0zm9zxewm6ayzahrxc8yqtennc2s9udmcd',
+        value: '0.000012'
+      });
+      console.log(result,"transaction result");
+      toast.success("Transaction successful");
+    } catch (error) {
+      toast.error("User denied transaction signature.");
+    } 
   };
   const [remainingTime, setRemainingTime] = useState(0);
 
@@ -194,7 +184,7 @@ const Hero = () => {
               />
             </div>
             <div className="w-full justify-end flex">
-              {balance ? <p className="text-white text-sm">Balance {balance/1e8} BTC
+              {balance ? <p className="text-white text-sm">Balance {balance / 1e8} BTC
               </p> : null}
             </div> </div>
           <div className="flex w-full bg-[#181F29] rounded-md px-4">
